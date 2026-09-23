@@ -7,4 +7,5 @@ select
     cast(impressions as bigint) as impressions,
     cast(clicks as bigint) as clicks,
     cast(installs as bigint) as installs
-from {{ ref('meta_ads') }}
+
+from {{ source('raw_marketing', 'meta_ads') }}

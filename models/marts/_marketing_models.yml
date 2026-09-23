@@ -1,10 +1,70 @@
 version: 2
 
 models:
+
+  - name: dim_platform
+    description: "Dimension containing unique advertising platforms."
+
+    columns:
+      - name: platform_key
+        description: "Surrogate key for the platform."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: platform
+        description: "Mobile operating system."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['android', 'ios']
+
+
+  - name: dim_country
+    description: "Dimension containing unique advertising countries."
+
+    columns:
+      - name: country_key
+        description: "Surrogate key for the country."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: country
+        description: "Country code."
+        data_tests:
+          - not_null
+
+
+  - name: dim_campaign
+    description: "Dimension containing unique campaigns by advertising source."
+
+    columns:
+      - name: campaign_key
+        description: "Surrogate key generated from source and campaign."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: source
+        description: "Advertising source."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['meta', 'applovin']
+
+      - name: campaign
+        description: "Campaign name."
+        data_tests:
+          - not_null
+
+
   - name: fct_marketing_performance
     description: >
-      Daily marketing performance metrics aggregated by
-      platform, country and advertising source.
+      Daily marketing performance fact table containing
+      advertising metrics by platform, country and campaign.
 
     columns:
       - name: day
@@ -12,23 +72,32 @@ models:
         data_tests:
           - not_null
 
-      - name: platform
-        description: "Mobile operating system."
+      - name: platform_key
+        description: "Foreign key referencing dim_platform."
         data_tests:
           - not_null
-
-      - name: country
-        description: "Country code for the advertising activity."
-        data_tests:
-          - not_null
-
-      - name: source
-        description: "Advertising platform such as Meta or AppLovin."
-        data_tests:
-          - not_null
-          - accepted_values:
+          - relationships:
               arguments:
-                values: ['meta', 'applovin']
+                to: ref('dim_platform')
+                field: platform_key
+
+      - name: country_key
+        description: "Foreign key referencing dim_country."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_country')
+                field: country_key
+
+      - name: campaign_key
+        description: "Foreign key referencing dim_campaign."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_campaign')
+                field: campaign_key
 
       - name: cost
         description: "Total advertising spend."
@@ -55,16 +124,16 @@ models:
           - non_negative
 
       - name: ctr
-        description: "Click-through rate calculated as clicks divided by impressions."
+        description: "Click-through rate."
         data_tests:
           - non_negative
 
       - name: cpc
-        description: "Cost per click calculated as cost divided by clicks."
+        description: "Cost per click."
         data_tests:
           - non_negative
 
       - name: cpi
-        description: "Cost per install calculated as cost divided by installs."
+        description: "Cost per install."
         data_tests:
           - non_negative

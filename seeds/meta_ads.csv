@@ -1,8 +1,8 @@
-day,platform,country,campaign,cost,impressions,clicks,installs
-2026-09-01,android,TR,summer_sale,1200,150000,4200,850
-2026-09-01,ios,TR,summer_sale,950,110000,3100,620
-2026-09-02,android,US,brand_awareness,1800,210000,5300,970
-2026-09-02,ios,US,brand_awareness,1650,190000,4900,880
-2026-09-03,android,UK,retargeting,750,90000,2800,540
-2026-09-03,ios,UK,retargeting,820,95000,3000,560
-2026-09-04,android,TR,autumn_campaign,1300,160000,4500,900
+day,platform,country,campaign,cost,impressions,clicks,installs,loaded_at
+2026-09-01,android,TR,summer_sale,1200,150000,4200,850,2026-09-23 14:00:00
+2026-09-01,ios,TR,summer_sale,950,110000,3100,620,2026-09-23 14:00:00
+2026-09-02,android,US,brand_awareness,1800,210000,5300,970,2026-09-23 14:00:00
+2026-09-02,ios,US,brand_awareness,1650,190000,4900,880,2026-09-23 14:00:00
+2026-09-03,android,UK,retargeting,750,90000,2800,540,2026-09-23 14:00:00
+2026-09-03,ios,UK,retargeting,820,95000,3000,560,2026-09-23 14:00:00
+2026-09-04,android,TR,autumn_campaign,1300,160000,4500,900,2026-09-23 14:00:00
