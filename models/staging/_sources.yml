@@ -23,3 +23,6 @@ sources:
 
       - name: applovin_ads
         description: "Raw advertising performance data from AppLovin Ads."
+
+      - name: campaign_status
+        description: "Current campaign status information used for snapshot history."
