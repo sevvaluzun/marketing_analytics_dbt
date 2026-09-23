@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: stg_meta_ads
+    description: "Cleaned and standardized Meta Ads data."
+
+    columns:
+      - name: day
+        data_tests:
+          - not_null
+
+      - name: platform
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['android', 'ios']
+
+      - name: country
+        data_tests:
+          - not_null
+
+      - name: cost
+        data_tests:
+          - not_null
+
+      - name: installs
+        data_tests:
+          - not_null
+
+
+  - name: stg_applovin_ads
+    description: "Cleaned and standardized AppLovin Ads data."
+
+    columns:
+      - name: day
+        data_tests:
+          - not_null
+
+      - name: platform
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['android', 'ios']
+
+      - name: country
+        data_tests:
+          - not_null
+
+      - name: cost
+        data_tests:
+          - not_null
+
+      - name: installs
+        data_tests:
+          - not_null

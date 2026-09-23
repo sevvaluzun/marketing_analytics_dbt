@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: fct_marketing_performance
+    description: >
+      Daily marketing performance metrics aggregated by
+      platform, country and advertising source.
+
+    columns:
+      - name: day
+        description: "Date of advertising activity."
+        data_tests:
+          - not_null
+
+      - name: platform
+        description: "Mobile operating system."
+        data_tests:
+          - not_null
+
+      - name: country
+        description: "Country code for the advertising activity."
+        data_tests:
+          - not_null
+
+      - name: source
+        description: "Advertising platform such as Meta or AppLovin."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['meta', 'applovin']
+
+      - name: cost
+        description: "Total advertising spend."
+        data_tests:
+          - not_null
+          - non_negative
+
+      - name: impressions
+        description: "Total number of ad impressions."
+        data_tests:
+          - not_null
+          - non_negative
+
+      - name: clicks
+        description: "Total number of ad clicks."
+        data_tests:
+          - not_null
+          - non_negative
+
+      - name: installs
+        description: "Total attributed installs."
+        data_tests:
+          - not_null
+          - non_negative
+
+      - name: ctr
+        description: "Click-through rate calculated as clicks divided by impressions."
+        data_tests:
+          - non_negative
+
+      - name: cpc
+        description: "Cost per click calculated as cost divided by clicks."
+        data_tests:
+          - non_negative
+
+      - name: cpi
+        description: "Cost per install calculated as cost divided by installs."
+        data_tests:
+          - non_negative
