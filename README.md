@@ -1,15 +1,23 @@
-Welcome to your new dbt project!
 
-### Using the starter project
+# Marketing Analytics dbt Project
 
-Try running the following commands:
-- dbt run
-- dbt test
+A dbt analytics engineering project that transforms multi-source advertising data into a clean and tested marketing performance mart.
 
+The project uses DuckDB as the local analytical database and demonstrates core dbt concepts including staging models, intermediate models, marts, incremental models, macros, data tests, documentation, and lineage.
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+## Architecture
+
+```text
+Meta Ads Seed
+      |
+      v
+stg_meta_ads
+      \
+       \
+        ---> int_ad_platforms_unioned
+       /                |
+      /                 v
+stg_applovin_ads   fct_marketing_performance
+      ^
+      |
+AppLovin Ads Seed
