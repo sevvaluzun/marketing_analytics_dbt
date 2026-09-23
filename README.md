@@ -7,17 +7,13 @@ The project uses DuckDB as the local analytical database and demonstrates core d
 
 ## Architecture
 
-```text
-Meta Ads Seed
-      |
-      v
-stg_meta_ads
-      \
-       \
-        ---> int_ad_platforms_unioned
-       /                |
-      /                 v
-stg_applovin_ads   fct_marketing_performance
-      ^
-      |
-AppLovin Ads Seed
+```mermaid
+flowchart LR
+    A[Meta Ads Seed] --> B[stg_meta_ads]
+    C[AppLovin Ads Seed] --> D[stg_applovin_ads]
+
+    B --> E[int_ad_platforms_unioned]
+    D --> E
+
+    E --> F[fct_marketing_performance]
+
